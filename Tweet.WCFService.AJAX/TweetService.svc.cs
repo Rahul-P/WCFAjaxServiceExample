@@ -1,34 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Activation;
-using System.ServiceModel.Web;
-using System.Text;
+﻿
 
 namespace Tweet.WCFService.AJAX
 {
+    using System.Collections.Generic;
+    using System.ServiceModel;
+    using System.ServiceModel.Activation;
+    using System.ServiceModel.Web;
+    using TweetBL;
+
     [ServiceContract(Namespace = "")]
     [AspNetCompatibilityRequirements(RequirementsMode = 
         AspNetCompatibilityRequirementsMode.Allowed)]
     public class TweetService
     {
-        // To use HTTP GET, add [WebGet] attribute. 
-        // (Default ResponseFormat is WebMessageFormat.Json)
-        // To create an operation that returns XML,
-        // add [WebGet(ResponseFormat=WebMessageFormat.Xml)],
-        // and include the following line in the operation body:
-        // WebOperationContext.Current.OutgoingResponse.ContentType = 
-        // "text/xml";
-        [OperationContract]
-        public void DoWork()
+        private TweetBL.ManageTweet _businessLayerTweetService;
+
+        public TweetService()
         {
-            // Add your operation implementation here
-            return;
+            _businessLayerTweetService = new TweetBL.ManageTweet();
         }
 
-        // Add more operations here and mark them with 
-        //[OperationContract]
+        [OperationContract]
+        [WebGet]
+        public IList<Tweet> GetTweets()
+        {
+            return _businessLayerTweetService.GetTweets();
+        }
+
+        [OperationContract]
+        [WebGet]
+        public Tweet GetTweetByID(int tweetId)
+        {
+            return _businessLayerTweetService.GetTweetById(tweetId);
+        }
+
+        [OperationContract]
+        [WebInvoke]
+        public void CreateTweet(Tweet newTweet)
+        {
+            _businessLayerTweetService.CreateTweet(newTweet);
+        }
+
+        [OperationContract]
+        [WebInvoke]
+        public void UpdateTweet(Tweet updateTweet)
+        {
+            _businessLayerTweetService.UpdateTweet(updateTweet);
+        }
+
+        [OperationContract]
+        [WebInvoke]
+        public void DeleteTweet(int deleteTweetId)
+        {
+            _businessLayerTweetService.DeleteTweet(deleteTweetId);
+        }
     }
 }

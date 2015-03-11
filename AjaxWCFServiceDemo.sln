@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TweetBL", "TweetBL\TweetBL.csproj", "{ABB56918-19F5-45F7-827B-E9E930328AB4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tweet.WCFService.AJAX", "Tweet.WCFService.AJAX\Tweet.WCFService.AJAX.csproj", "{A5817D0C-1052-4044-BE34-5679AC7320E9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{ABB56918-19F5-45F7-827B-E9E930328AB4} = {ABB56918-19F5-45F7-827B-E9E930328AB4}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

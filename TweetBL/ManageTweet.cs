@@ -12,10 +12,10 @@ namespace TweetBL
 
         public ManageTweet()
         {
-            if (File.Exists("./TweetDBFile.dat"))
+            if (File.Exists("./ManageTweetDBFile.dat"))
             {
                 var formatter = new BinaryFormatter();
-                using (var stream = new FileStream("./TweetDBFile.dat", FileMode.Open, FileAccess.Read, FileShare.Read))
+                using (var stream = new FileStream("./ManageTweetDBFile.dat", FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
                     this.Tweets = (List<Tweet>)formatter.Deserialize(stream);
                 }
@@ -71,7 +71,7 @@ namespace TweetBL
         private void SaveTweet()
         {
             var formatter = new BinaryFormatter();
-            using (var stream = new FileStream("./TweetDBFile.dat", FileMode.Create, FileAccess.Write))
+            using (var stream = new FileStream("./ManageTweetDBFile.dat", FileMode.Create, FileAccess.Write))
             {
                 formatter.Serialize(stream, this.Tweets);
             }
