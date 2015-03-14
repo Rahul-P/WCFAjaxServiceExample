@@ -21,7 +21,7 @@ namespace Tweet.WCFService.AJAX
         }
 
         [OperationContract]
-        [WebGet]
+        [WebGet] //(ResponseFormat=WebMessageFormat.Xml)
         public IList<Tweet> GetTweets()
         {
             return _businessLayerTweetService.GetTweets();
